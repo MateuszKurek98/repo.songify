@@ -6,7 +6,6 @@ import com.example.reposongify.song.infrastructure.dto.request.PartiallyUpdateSo
 import com.example.reposongify.song.infrastructure.dto.request.UpdateSongRequestDto;
 import com.example.reposongify.song.infrastructure.dto.response.*;
 import org.springframework.http.HttpStatus;
-
 import java.util.Map;
 
 public class SongMapper {
