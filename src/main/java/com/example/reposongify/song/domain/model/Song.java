@@ -1,4 +1,7 @@
 package com.example.reposongify.song.domain.model;
 
-public class Song {
+import lombok.Builder;
+
+@Builder
+public record Song (String name, String artist){
 }

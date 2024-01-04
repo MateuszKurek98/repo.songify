@@ -1,4 +1,6 @@
 package com.example.reposongify.song.infrastructure.dto.response;
 
-public record DeleteSongResponseDto() {
+import org.springframework.http.HttpStatus;
+
+public record DeleteSongResponseDto(String message, HttpStatus status) {
 }

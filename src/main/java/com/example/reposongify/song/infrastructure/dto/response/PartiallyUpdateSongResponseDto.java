@@ -1,4 +1,6 @@
 package com.example.reposongify.song.infrastructure.dto.response;
 
-public record PartiallyUpdateSongResponseDto() {
+import com.example.reposongify.song.domain.model.Song;
+
+public record PartiallyUpdateSongResponseDto(Song updatedSong) {
 }

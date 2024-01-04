@@ -1,4 +1,8 @@
 package com.example.reposongify.song.infrastructure.dto.response;
 
-public record GetAllSongResponseDto() {
+import com.example.reposongify.song.domain.model.Song;
+
+import java.util.Map;
+
+public record GetAllSongResponseDto(Map<Integer, Song> songs) {
 }

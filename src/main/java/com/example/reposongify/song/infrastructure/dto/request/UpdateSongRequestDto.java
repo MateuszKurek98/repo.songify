@@ -1,4 +1,15 @@
 package com.example.reposongify.song.infrastructure.dto.request;
 
-public record UpdateSongRequestDto() {
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
+public record UpdateSongRequestDto(
+        @NotNull(message = "songName must not be null")
+        @NotEmpty(message = "songName must not be empty!")
+        String songName,
+
+        @NotNull(message = "artist must not be null")
+        @NotEmpty(message = "artist must not be empty!")
+        String artist
+    ) {
 }

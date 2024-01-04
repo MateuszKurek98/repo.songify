@@ -1,4 +1,7 @@
 package com.example.reposongify.song.infrastructure.error;
 
-public record ErrorDeleteSongResponseDto() {
+import org.springframework.http.HttpStatus;
+
+public record ErrorDeleteSongResponseDto(String message, HttpStatus status) {
+
 }
