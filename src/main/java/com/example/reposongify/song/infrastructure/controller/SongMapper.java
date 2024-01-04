@@ -9,9 +9,10 @@ import org.springframework.http.HttpStatus;
 
 import java.util.Map;
 
-public class SongMapper {public static Song mapFromCreateSongRequestDtoToSong(CreateSongRequestDto dto) {
-    return new Song(dto.songName(), dto.artist());
-}
+public class SongMapper {
+    public static Song mapFromCreateSongRequestDtoToSong(CreateSongRequestDto dto) {
+        return new Song(dto.songName(), dto.artist());
+    }
 
     public static Song mapFromUpdateSongRequestDtoToSong(UpdateSongRequestDto dto) {
         return new Song(dto.songName(), dto.artist());
