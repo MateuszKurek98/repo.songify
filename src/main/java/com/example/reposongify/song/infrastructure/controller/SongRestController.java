@@ -10,11 +10,12 @@ import com.example.reposongify.song.infrastructure.dto.request.UpdateSongRequest
 import com.example.reposongify.song.infrastructure.dto.response.*;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+
+
 @RestController
 @Log4j2
 @RequestMapping("/songs")
@@ -22,13 +23,15 @@ import java.util.Map;
 public class SongRestController {
     private final SongAdder songAdder;
     private final SongRetriever songRetriever;
+    private final ArtistsSaver artistSaver; 
 
-    SongRestController(SongAdder songAdder, SongRetriever songRetriever) {
+    SongRestController(SongAdder songAdder, SongRetriever songRetriever, ArtistsSaver artistSaver) {
         this.songAdder = songAdder;
         this.songRetriever = songRetriever;
+        this.artistSaver = artistSaver;
     }
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<GetAllSongsResponseDto> getAllSongs(@RequestParam(required = false) Integer limit) {
         Map<Integer, Song> allSongs = songRetriever.findAll();
         if (limit != null) {
@@ -52,9 +55,15 @@ public class SongRestController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<CreateSongResponseDto> postSong(@RequestBody @Valid CreateSongRequestDto request) {
         Song song = SongMapper.mapFromCreateSongRequestDtoToSong(request);
+
+        artistSaver.addArtist(song.artist());
+        artistSaver.printArtistsSize();
+        artistSaver.printArtists();
+        artistSaver.printSaverName();
+
         songAdder.addSong(song);
         CreateSongResponseDto body = SongMapper.mapFromSongToCreateSongResponseDto(song);
         return ResponseEntity.ok(body);
